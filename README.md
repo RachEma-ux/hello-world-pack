@@ -21,13 +21,13 @@ A simple WASM pack demonstrating the Builder app workflow.
 
 ```bash
 # Install Rust with WASM target
-rustup target add wasm32-wasi
+rustup target add wasm32-wasip1
 
 # Build
-cargo build --release --target wasm32-wasi
+cargo build --release --target wasm32-wasip1
 
 # Run locally with Wasmtime
-wasmtime target/wasm32-wasi/release/main.wasm
+wasmtime target/wasm32-wasip1/release/main.wasm
 ```
 
 ## Expected Output
@@ -38,7 +38,7 @@ wasmtime target/wasm32-wasi/release/main.wasm
 ========================================
 
 [INFO] Pack: Hello World Pack v1.0.0
-[INFO] Runtime: wasm32-wasi
+[INFO] Runtime: wasm32-wasip1
 
 [INFO] Environment variables available: X
 [INFO] Fibonacci(20) = 6765

@@ -17,12 +17,12 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: wasm32-wasi
+          targets: wasm32-wasip1
 
       - name: Build WASM
         run: |
-          cargo build --release --target wasm32-wasi
-          ls -la target/wasm32-wasi/release/
+          cargo build --release --target wasm32-wasip1
+          ls -la target/wasm32-wasip1/release/
 
       - name: Get version
         id: version
@@ -48,15 +48,15 @@ jobs:
       - name: Package
         run: |
           mkdir -p dist
-          cp target/wasm32-wasi/release/main.wasm dist/
+          cp target/wasm32-wasip1/release/main.wasm dist/
           cp pack.json dist/
 
           cd dist
-          zip -r ../pack-hello-wasm32-wasi-${{ steps.version.outputs.version }}.zip .
+          zip -r ../pack-hello-wasm32-wasip1-${{ steps.version.outputs.version }}.zip .
           cd ..
 
           # Create checksums
-          sha256sum pack-hello-wasm32-wasi-${{ steps.version.outputs.version }}.zip > checksums.sha256
+          sha256sum pack-hello-wasm32-wasip1-${{ steps.version.outputs.version }}.zip > checksums.sha256
           cat checksums.sha256
 
       - name: Upload artifact
@@ -64,7 +64,7 @@ jobs:
         with:
           name: pack-hello-${{ steps.version.outputs.version }}
           path: |
-            pack-hello-wasm32-wasi-*.zip
+            pack-hello-wasm32-wasip1-*.zip
             checksums.sha256
 
       - name: Create Release
@@ -72,7 +72,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            pack-hello-wasm32-wasi-*.zip
+            pack-hello-wasm32-wasip1-*.zip
             checksums.sha256
           generate_release_notes: true
         env:
@@ -97,7 +97,7 @@ jobs:
       - name: Extract and run
         run: |
           ls -la
-          unzip pack-hello-wasm32-wasi-*.zip -d pack
+          unzip pack-hello-wasm32-wasip1-*.zip -d pack
           echo "=== Running WASM Pack ==="
           ~/.wasmtime/bin/wasmtime pack/main.wasm
           echo "=== Execution Complete ==="

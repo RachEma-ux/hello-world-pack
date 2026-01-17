@@ -8,7 +8,7 @@ fn main() {
 
     // Display environment info
     println!("[INFO] Pack: Hello World Pack v1.0.0");
-    println!("[INFO] Runtime: wasm32-wasi");
+    println!("[INFO] Runtime: wasm32-wasip1");
     println!();
 
     // Check for any environment variables
