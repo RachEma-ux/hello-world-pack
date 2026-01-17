@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Rust
-        uses: dtolnay/rust-action@stable
+        uses: dtolnay/rust-toolchain@stable
         with:
           targets: wasm32-wasi
 
@@ -86,7 +86,8 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: pack-hello-${{ needs.build.outputs.version || 'dev' }}
+          pattern: pack-hello-*
+          merge-multiple: true
 
       - name: Install Wasmtime
         run: |
@@ -95,6 +96,7 @@ jobs:
 
       - name: Extract and run
         run: |
+          ls -la
           unzip pack-hello-wasm32-wasi-*.zip -d pack
           echo "=== Running WASM Pack ==="
           ~/.wasmtime/bin/wasmtime pack/main.wasm
