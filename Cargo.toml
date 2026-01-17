@@ -1,0 +1,15 @@
+[package]
+name = "hello-world-pack"
+version = "1.0.0"
+edition = "2021"
+description = "A simple Hello World WASM pack for Builder"
+
+[dependencies]
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = "s"
+lto = true

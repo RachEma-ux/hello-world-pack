@@ -1,0 +1,23 @@
+{
+  "pack_version": "0.1",
+  "id": "com.builder.hello-world",
+  "name": "Hello World Pack",
+  "version": "1.0.0",
+  "type": "wasm",
+  "entry": "main.wasm",
+  "permissions": {
+    "network": {
+      "connect": []
+    }
+  },
+  "limits": {
+    "memory_mb": 64,
+    "cpu_ms_per_sec": 100
+  },
+  "required_env": [],
+  "build": {
+    "git_sha": "placeholder",
+    "built_at": "2026-01-17T00:00:00Z",
+    "target": "wasm32-wasi"
+  }
+}
